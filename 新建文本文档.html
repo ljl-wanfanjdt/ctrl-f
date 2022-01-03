@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .search {
+      background-color: rgb(251, 255, 0);
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    function getIndicesOf(searchStr, str, caseSensitive) {
+      var searchStrLen = searchStr.length;
+      if (searchStrLen == 0) {
+        return [];
+      }
+      var startIndex = 0, index, indices = [];
+      if (!caseSensitive) {
+        str = str.toLowerCase();
+        searchStr = searchStr.toLowerCase();
+      }
+
+      while ((index = str.indexOf(searchStr, startIndex)) > -1) {
+        indices.push(index);
+        startIndex = index + searchStrLen;
+      }
+      return indices;
+    }
+    let str1 = 'aicoabmeBaceAidfjlbAanfAaidfkjl'
+    'aicoameBaceAidfjlbAanfAaidfkjl'
+    let keyword = 'ba'
+    let arr = getIndicesOf(keyword, str1)
+    let arr2 = str1.match(new RegExp(keyword, 'gi'))
+    console.log(arr2, arr);
+    let str2 = ''
+    for (let index = 0; index < arr.length; index++) {
+      let changeStr = `<span class='search'>${arr2[index]}</span>`
+      if (index === 0) {
+        str2 += str1.substring(0, arr[index]) + changeStr
+      } else {
+        str2 += str1.substring(arr[index - 1] + keyword.length, arr[index]) + changeStr
+      }
+    }
+    str2 += str1.substr([arr[arr.length - 1] + keyword.length]);
+    // str:原始字符串，index,开始位置,changeStr，改变后的字
+    document.write(str2)
+  </script>
+</body>
+
+</html>
