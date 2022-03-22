@@ -42,7 +42,7 @@
     for (let index = 0; index < arr.length; index++) {
       let changeStr = `<span class='search'>${arr2[index]}</span>`
       if (index === 0) {
-        str2 += str1.substring(0, arr[index]) + changeStr
+        str2 += str1.slice(0, arr[index]) + changeStr
       } else {
         str2 += str1.substring(arr[index - 1] + keyword.length, arr[index]) + changeStr
       }
